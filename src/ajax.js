@@ -223,7 +223,7 @@ jQuery.extend({
 
 		// Build temporary JSONP function
 		if ( s.dataType === "json" && (s.data && jsre.test(s.data) || jsre.test(s.url)) ) {
-			jsonp = s.jsonpCallback || ("jsonp" + s.url.replace(rwonly,''));
+			jsonp = s.jsonpCallback || ("jsonp" + s.cache ? s.url.replace(rwonly,'') : jsc++);
 
 			// Replace the =? sequence both in the query string and the data
 			if ( s.data ) {
