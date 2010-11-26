@@ -12,6 +12,7 @@ var jsc = jQuery.now(),
 	rurl = /^(\w+:)?\/\/([^\/?#]+)/,
 	r20 = /%20/g,
 	rhash = /#.*$/,
+	rwonly = /\W/g,
 
 	// Keep a copy of the old load method
 	_load = jQuery.fn.load;
@@ -222,7 +223,7 @@ jQuery.extend({
 
 		// Build temporary JSONP function
 		if ( s.dataType === "json" && (s.data && jsre.test(s.data) || jsre.test(s.url)) ) {
-			jsonp = s.jsonpCallback || ("jsonp" + jsc++);
+			jsonp = s.jsonpCallback || ("jsonp" + s.url.replace(rwonly,''));
 
 			// Replace the =? sequence both in the query string and the data
 			if ( s.data ) {
